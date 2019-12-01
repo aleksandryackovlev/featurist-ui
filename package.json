@@ -1,0 +1,22 @@
+{
+  "name": "random-quotes",
+  "version": "0.0.1",
+  "description": "Random quotes",
+  "main": "index.js",
+  "repository": "git@github.com:aleksandryackovlev/random-quotes.git",
+  "author": "Aleksandr Yackovlev <aleksandryackovlev@yandex.ru>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "scripts": {
+    "commit": "git-cz"
+  }
+}
