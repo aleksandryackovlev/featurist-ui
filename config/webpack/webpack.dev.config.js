@@ -10,7 +10,10 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
+const getClientEnvironment = require('../general/env');
 const paths = require('../general/paths');
+
+const env = getClientEnvironment('');
 
 module.exports = {
   mode: 'development',
@@ -46,8 +49,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ inject: true, template: paths.appHtml }),
-    // new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
-    // new webpack.DefinePlugin(env.stringified),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
+    new webpack.DefinePlugin(env.stringified),
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

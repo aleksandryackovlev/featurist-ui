@@ -19,7 +19,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^4.0.0-beta.11",
     "react-dev-utils": "^9.1.0",
     "resolve": "^1.13.1",
     "typescript": "^3.7.2",
@@ -33,9 +33,13 @@
     }
   },
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack/webpack.dev.config.js",
+    "start": "NODE_ENV=development webpack-dev-server --config config/webpack/webpack.dev.config.js",
     "build": "webpack --mode production",
     "lint:js": "eslint --ext=js --ext=jsx config/",
     "commit": "git-cz"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0"
   }
 }

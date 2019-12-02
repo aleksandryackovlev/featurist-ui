@@ -36,7 +36,6 @@ module.exports = {
   appPackageJson: resolveApp('package.json'),
   appTsConfig: resolveApp('tsconfig.json'),
   appSrc: resolveApp('src'),
-  appConstants: resolveApp('src/constants'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
