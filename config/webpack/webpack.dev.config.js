@@ -47,6 +47,28 @@ module.exports = {
       app.use(noopServiceWorkerMiddleware());
     },
   },
+  resolve: {
+    modules: ['node_modules', paths.appNodeModules],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs'],
+  },
+  module: {
+    strictExportPresence: true,
+    rules: [
+      { parser: { requireEnsure: false } },
+      {
+        oneOf: [
+          {
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              configFile: paths.appTsConfig,
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({ inject: true, template: paths.appHtml }),
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
@@ -68,7 +90,6 @@ module.exports = {
         '!**/src/setupTests.*',
       ],
       watch: paths.appSrc,
-      silent: true,
     }),
   ],
   node: {
