@@ -20,18 +20,21 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.9.0",
-    "@typescript-eslint/parser": "^2.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.7.2",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^4.0.0-beta.11",
+    "prettier": "^1.19.1",
     "react-dev-utils": "^9.1.0",
     "resolve": "^1.13.1",
     "ts-loader": "^6.2.1",
@@ -48,7 +51,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config config/webpack/webpack.dev.config.js",
     "build": "webpack --mode production",
-    "lint:js": "eslint --ext=js --ext=jsx config/",
+    "lint:js": "eslint --ext=ts --ext=tsx src/",
     "commit": "git-cz"
   }
 }
