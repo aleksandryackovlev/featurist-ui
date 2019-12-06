@@ -15,20 +15,22 @@ const paths = require('../general/paths');
 
 const env = getClientEnvironment('');
 
+const imageInlineSizeLimit = parseInt(
+  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
+);
+
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: [
-    require.resolve('react-dev-utils/webpackHotDevClient'),
-    paths.appIndexJs,
-  ],
+  entry: [require.resolve('react-dev-utils/webpackHotDevClient'), paths.appIndexJs],
   output: {
     pathinfo: true,
     filename: 'static/js/bundle.js',
     futureEmitAssets: true,
     chunkFilename: 'static/js/[name].chunk.js',
     publicPath: '',
-    devtoolModuleFilenameTemplate: ((info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+    devtoolModuleFilenameTemplate: info =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   devServer: {
     clientLogLevel: 'silent',
@@ -58,11 +60,26 @@ module.exports = {
       {
         oneOf: [
           {
+            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: imageInlineSizeLimit,
+              name: 'static/media/[name].[hash:8].[ext]',
+            },
+          },
+          {
             test: /\.tsx?$/,
-            loader: 'ts-loader',
+            loader: require.resolve('ts-loader'),
             options: {
               transpileOnly: true,
               configFile: paths.appTsConfig,
+            },
+          },
+          {
+            loader: require.resolve('file-loader'),
+            exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+            options: {
+              name: 'static/media/[name].[hash:8].[ext]',
             },
           },
         ],
