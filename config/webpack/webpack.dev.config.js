@@ -9,15 +9,14 @@ const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
 const getClientEnvironment = require('../general/env');
 const paths = require('../general/paths');
 
 const env = getClientEnvironment('');
 
-const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
-);
+const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || '10000', 10);
 
 module.exports = {
   mode: 'development',
@@ -74,6 +73,27 @@ module.exports = {
               transpileOnly: true,
               configFile: paths.appTsConfig,
             },
+          },
+          {
+            test: /\.css$/,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 2,
+                  sourceMap: true,
+                  modules: true,
+                  getLocalIdent: getCSSModuleLocalIdent,
+                },
+              },
+              {
+                loader: require.resolve('sass-loader'),
+                options: {
+                  sourceMap: true,
+                },
+              },
+            ],
           },
           {
             loader: require.resolve('file-loader'),
