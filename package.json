@@ -35,6 +35,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^4.0.0-beta.11",
+    "husky": "^3.1.0",
     "prettier": "^1.19.1",
     "react-dev-utils": "^9.1.0",
     "resolve": "^1.13.1",
@@ -47,6 +48,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./bin/lint-staged-files"
     }
   },
   "scripts": {
