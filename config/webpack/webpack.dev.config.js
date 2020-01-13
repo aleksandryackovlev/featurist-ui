@@ -11,6 +11,8 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
+const createMiddleware = require('./createMiddleware');
+
 const getClientEnvironment = require('../general/env');
 const paths = require('../general/paths');
 
@@ -46,6 +48,13 @@ module.exports = {
     before(app) {
       app.use(errorOverlayMiddleware());
       app.use(noopServiceWorkerMiddleware());
+
+      app.use(
+        '/api',
+        createMiddleware({
+          file: path.resolve(__dirname, '../../src/api/petstore.yaml'),
+        })
+      );
     },
   },
   resolve: {
