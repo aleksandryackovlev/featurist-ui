@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+set -u
+
+opts=r:d:b:
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+while getopts $opts opt; do
+  case $opt in
+    d)
+      directory=$PWD/"$OPTARG"
+      localDirectory="$OPTARG"
+      ;;
+    r)
+      repository="$OPTARG"
+      ;;
+    b)
+      branch="$OPTARG"
+      ;;
+    *)
+      echo "An unknown options was given"
+      exit 1;
+      ;;
+  esac
+done
+
+cwd="$PWD"
+
+if [[ -z $directory ]]; then
+  echo "-d directory is required"
+  exit 1;
+fi
+
+if [[ -z $repository ]]; then
+  echo "-r repository is required"
+  exit 1;
+fi
+
+if [[ -z $branch ]]; then
+  echo Current branch is unknown. Tear down to master.
+  branch=master
+else
+  echo Current branch is "$branch".
+fi
+
+if ! git ls-remote --heads --exit-code "$repository" "$branch" > /dev/null; then
+  echo Branch "$branch" does not exist on "$repository". Tear down to master.
+  branch=master
+fi
+
+if [[ ! -d $directory ]]; then
+  echo Clonning repository "$repository" into "$localDirectory".
+  git clone "$repository" "$localDirectory"
+fi
+
+if [[ ! -d "$directory"/.git ]]; then
+  echo "$directory" is not a git repository. Rewriting its content by clonning "$repository".
+  rm -rf "$directory"
+  git clone "$repository" "$localDirectory"
+fi
+
+cd "$directory" || exit 1
+
+echo Cleaning unstaged changes in "$directory".
+git clean -df
+git checkout -- .
+
+echo Checking out to "$branch".
+git pull
+git checkout "$branch"
+git pull
+
+cd "$cwd" || exit 1
+
+echo Api for branch "$branch" has been successfully set up.
