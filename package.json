@@ -1,79 +1,42 @@
 {
-  "name": "random-quotes",
-  "version": "0.0.1",
-  "description": "Random quotes",
-  "main": "index.js",
-  "repository": "git@github.com:aleksandryackovlev/random-quotes.git",
-  "author": "Aleksandr Yackovlev <aleksandryackovlev@yandex.ru>",
-  "license": "MIT",
+  "name": "my-app",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.7.1",
-    "@types/react": "^16.9.14",
-    "@types/react-dom": "^16.9.4",
-    "@types/react-router-dom": "^5.1.3",
-    "chokidar": "^3.3.1",
-    "css-loader": "^3.2.1",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
-    "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "file-loader": "^5.0.2",
-    "json-schema-faker": "^0.5.0-rc23",
-    "mobx": "^5.15.0",
-    "mobx-react": "^6.1.4",
-    "path-to-regexp": "^6.1.0",
-    "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-normalize": "^8.0.1",
-    "postcss-preset-env": "^6.7.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.1",
-    "swagger-parser": "^8.0.4",
-    "url-loader": "^3.0.0"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.10.0",
-    "@typescript-eslint/parser": "^2.10.0",
-    "case-sensitive-paths-webpack-plugin": "^2.2.0",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "html-webpack-plugin": "^4.0.0-beta.11",
-    "husky": "^3.1.0",
-    "prettier": "^1.19.1",
-    "react-dev-utils": "^9.1.0",
-    "resolve": "^1.13.1",
-    "ts-loader": "^6.2.1",
-    "typescript": "^3.7.2",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "./bin/lint-staged-files"
-    }
+    "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.0",
+    "react-scripts": "4.0.3",
+    "typescript": "~4.1.5"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --config config/webpack/webpack.dev.config.js",
-    "build": "webpack --mode production",
-    "lint:js": "eslint --ext=ts --ext=tsx src/",
-    "commit": "git-cz"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

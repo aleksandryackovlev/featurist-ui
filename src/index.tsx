@@ -1,24 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+import * as serviceWorker from './serviceWorker';
 
-import quotesStore from './stores/quotes';
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-import App from './app';
-
-const rootElement = document.getElementById('root')!;
-
-ReactDOM.render(<App quotesList={quotesStore} />, rootElement);
-
-quotesStore.addQuote({
-  id: 'id1',
-  text: 'Lorem ipsum dolor amed',
-  author: 'John Smith',
-});
-
-setTimeout(() => {
-  quotesStore.addQuote({
-    id: 'id2',
-    text: 'Lorem ipsum dolor amed 1',
-    author: 'Joe Doe',
-  });
-}, 1000);
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
