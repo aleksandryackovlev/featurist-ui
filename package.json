@@ -6,6 +6,8 @@
     "@babel/core": "7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.4",
@@ -38,7 +40,9 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "commitizen": "^4.2.4",
     "css-loader": "4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
@@ -59,6 +63,7 @@
     "fs-extra": "^9.0.1",
     "history": "^5.0.0",
     "html-webpack-plugin": "4.5.0",
+    "husky": "^6.0.0",
     "identity-obj-proxy": "3.0.0",
     "inversify": "^5.1.1",
     "jest": "26.6.0",
@@ -68,6 +73,7 @@
     "jest-watch-typeahead": "0.6.1",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
+    "pinst": "^2.1.6",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-loader": "3.0.0",
@@ -103,7 +109,11 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint src/**/*.ts{,x}"
+    "lint": "eslint src/**/*.ts{,x}",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
+    "commit": "git-cz"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -192,5 +202,10 @@
       ],
       "babel-plugin-parameter-decorator"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
