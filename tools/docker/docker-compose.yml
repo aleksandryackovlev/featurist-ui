@@ -1,0 +1,32 @@
+version: '3.7'
+
+x-app-defaults: &app_defaults
+  image: node:14
+  volumes:
+    - ./:/usr/src/service/
+  working_dir: /usr/src/service/
+  environment:
+    REACT_APP_API_URL: http://localhost:8004
+
+services:
+  app-install:
+    << : *app_defaults
+    command: bash -c "yarn install"
+
+  app-dev:
+    << : *app_defaults
+    depends_on:
+      - api-service
+    command: bash -c "yarn start"
+    stdin_open: true
+    ports:
+      - "3000:3000"
+
+  api-service:
+    build:
+      context: .
+      dockerfile: ./tools/api-service-mock/Dockerfile
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./api/api/admin-api.yaml:/var/api/openapi.yaml

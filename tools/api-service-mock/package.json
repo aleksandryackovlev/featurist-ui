@@ -1,0 +1,15 @@
+{
+  "name": "api-service-mock",
+  "version": "0.1.0",
+  "description": "Api service mock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Yackovlev",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "openapi-mock-express-middleware": "^1.3.0"
+  }
+}
