@@ -1,7 +1,7 @@
 const path = require('path');
-const cors = require('cors');
 
 const express = require('express');
+const cors = require('cors');
 const { createMockMiddleware } = require('openapi-mock-express-middleware');
 
 const port = process.env.APP_PORT || 8004;
@@ -30,18 +30,9 @@ app.options(
 
 app.use(express.json());
 
-app.post('/admin/auth/token', (req, res) => {
-  res.status(401).json({
-    message: 'Unauthorized',
-  });
-});
-
 app.use(
   createMockMiddleware({
-    file: path.resolve(__dirname, '../../api/openapi.yaml'),
-    cors: {
-      enable: false,
-    },
+    spec: path.resolve(__dirname, '../../api/openapi.yaml'),
   })
 );
 
